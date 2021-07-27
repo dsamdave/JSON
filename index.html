@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Page</title>
+</head>
+<body>
+
+    <ul id="people"></ul>
+
+    <script>
+
+ /*
+        var person = {
+            name: "David",
+            age: 35
+        }
+
+        check = JSON.stringify(person);
+
+        check2 = JSON.parse(check);
+
+        // console.log(check2.name);
+
+        people = [
+            {
+                name: "Jame",
+                age: 34
+            },
+            {
+                name: "Nma",
+                age: 21
+            },
+            {
+                name: "George",
+                age: 56
+            }
+
+        ]
+
+        // console.log(people[2].age);
+
+        let output = " ";
+
+        for( i = 0; i < people.length; i++){
+            
+            output += "<li>" + people[i].name + "</li>" 
+
+
+        }
+
+        document.getElementById("people").innerHTML = output;
+      */  
+
+        let output = " ";
+        
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+
+                // document.getElementById("demo").innerHTML = xhttp.responseText;
+
+                let response = JSON.parse(xhttp.responseText);
+                let people = response.people;
+                
+                
+
+                for( i = 0; i < people.length; i++){
+            
+                    output += "<li>" + people[i].name + "</li>" 
+
+                }
+
+                    document.getElementById("people").innerHTML = output;
+            }
+
+
+        };
+
+        xhttp.open("GET", "people.json", true);
+        xhttp.send();
+
+
+    </script>
+    
+</body>
+</html>
